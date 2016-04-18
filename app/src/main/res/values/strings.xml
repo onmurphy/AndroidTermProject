@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Make Me Pretty</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hair_color">What is your hair color?</string>
+    <string name="hair_length">How long is your hair?</string>
+    <string name="eye_color">What is your eye color?</string>
+    <string name="eye_shape">What is your eye shape?</string>
+    <string name="skin_tone">What is your skin tone?</string>
+    <string name="skin_undertone">What is your skin undertone?</string>
+    <string name="skin_type">What is your skin type?</string>
+    <string name="face_shape">What is your face shape?</string>
+    <string name="height">What is your height?</string>
+    <string name="body_type">What is your body type?</string>
+    <string name="skin_undertone_hint">Look at the veins on the inside of your wrist.
+        If your veins appear blue/purple you are in the cool-toned (bluish) spectrum. If your veins appear green, you are in the warm-toned (yellow) spectrum. Those with neutral undertones will have difficulty discerning the blue/green.</string>
+
+    <string-array name="question_bank">
+        <item>@string/hair_color</item>
+        <item>@string/hair_length</item>
+        <item>@string/eye_color</item>
+        <item>@string/eye_shape</item>
+        <item>@string/skin_tone</item>
+        <item>@string/skin_undertone</item>
+        <item>@string/skin_type</item>
+        <item>@string/face_shape</item>
+        <item>@string/height</item>
+        <item>@string/body_type</item>
+    </string-array>
+
+</resources>

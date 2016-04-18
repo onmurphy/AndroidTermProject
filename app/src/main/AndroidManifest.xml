@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.oliviamurphy.MakeMePretty" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="Make Me Pretty"
+        android:theme="@style/AppTheme" >/
+        <activity
+            android:name="com.example.oliviamurphy.MakeMePretty.MainActivity"
+            android:label="Make Me Pretty" >
+
+        </activity>
+
+        <activity
+            android:name="com.example.oliviamurphy.MakeMePretty.Quiz"
+            android:label="Make Me Pretty" >
+
+        </activity>
+
+        <activity android:name="com.example.oliviamurphy.MakeMePretty.Splash"
+                  android:label="Splash Screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.example.oliviamurphy.MakeMePretty.PopupUndertone"
+            android:theme="@style/AppTheme.CustomTheme">
+        </activity>
+
+        <activity android:name="com.example.oliviamurphy.MakeMePretty.PopupFaceShape"
+                  android:theme="@style/AppTheme.CustomTheme">
+        </activity>
+
+        <activity android:name="com.example.oliviamurphy.MakeMePretty.CalculatingResults">
+        </activity>
+
+        <activity android:name="com.example.oliviamurphy.MakeMePretty.QuizResults">
+        </activity>
+
+    </application>
+
+</manifest>

@@ -11,7 +11,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.view.animation.AlphaAnimation;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +25,6 @@ public class Quiz extends Activity{
     Button hintButton;
     int currentIndex = 0;
     TextView questionTextView;
-    String[] questionBank;
     TextView questionCountTextView;
     RadioGroup radioGroup;
     RadioButton radioButton1;
@@ -34,6 +35,7 @@ public class Quiz extends Activity{
     int questionID = 0;
     Question currentQuestion;
     DBHelper db;
+    ArrayList<String> answerChosen = new ArrayList<>();
 
     private void setQuestionView()
     {
@@ -42,23 +44,18 @@ public class Quiz extends Activity{
         radioButton2.setText(currentQuestion.getOPTB());
         radioButton3.setText(currentQuestion.getOPTC());
         radioButton4.setText(currentQuestion.getOPTD());
-        questionID++;
     }
-
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        //db = new DBHelper(this);
-        //db.getWritableDatabase();
+        db = new DBHelper(this);
+        db.addQuestions();
+        questionList = db.getAllQuestions();
 
-        //questionList = db.getAllQuestions();
-
-        //currentQuestion = questionList.get(questionID);
-
-        //questionBank = getResources().getStringArray(R.array.question_bank);
+        currentQuestion = questionList.get(questionID);
 
         final Animation in = new AlphaAnimation(0.0f, 1.0f);
         in.setDuration(2000);
@@ -70,8 +67,15 @@ public class Quiz extends Activity{
         radioGroup = (RadioGroup) findViewById(R.id.answers);
         radioGroup.startAnimation(animation);
 
+        radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
+        radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
+        radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
+        radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
+
         questionTextView = (TextView) findViewById(R.id.textView);
-        //questionTextView.setText(questionBank[currentIndex]);
+
+        setQuestionView();
+
         questionTextView.startAnimation(in);
 
         currentIndex++;
@@ -85,55 +89,74 @@ public class Quiz extends Activity{
         hintButton = (Button) findViewById(R.id.hintButton);
         hintButton.setVisibility(View.GONE);
 
-        radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
-        radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
-        radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
-        radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
-
-        //setQuestionView();
-
         nextButton = (Button) findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(questionID<10){
-                    //currentQuestion=questionList.get(questionID);
-                    //setQuestionView();
+                if (radioGroup.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(getApplicationContext(), "Wait, you didn't choose an answer!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (radioButton1.isChecked()) {
+                        answerChosen.add(questionID, "optA");
+                    }
+
+                    if (radioButton2.isChecked()) {
+                        answerChosen.add(questionID, "optB");
+                    }
+
+                    if (radioButton3.isChecked()) {
+                        answerChosen.add(questionID, "optC");
+                    }
+
+                    if (radioButton4.isChecked()) {
+                        answerChosen.add(questionID, "optD");
+                    }
+                    if (questionID < 9) {
+                        questionID++;
+                        currentQuestion = questionList.get(questionID);
+                        setQuestionView();
+                        questionTextView.startAnimation(in);
+                    } else {
+                        Intent intent = new Intent(Quiz.this, QuizResults.class);
+                        Bundle b = new Bundle();
+                        b.putStringArrayList("answersChosen", answerChosen);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                        finish();
+                    }
                     questionTextView.startAnimation(in);
+
                     radioGroup.clearCheck();
                     radioGroup.startAnimation(animation);
-                }else{
-                    Intent intent = new Intent(Quiz.this, QuizResults.class);
-                    Bundle b = new Bundle();
-                    b.putInt("score", 5); //Your score
-                    intent.putExtras(b); //Put your score to your next Intent
-                    startActivity(intent);
-                    finish();
+
+                    currentIndex++;
+
+                    if (currentIndex == 10) {
+                        nextButton.setVisibility(View.GONE);
+                        submitButton.setVisibility(View.VISIBLE);
+                        submitButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(Quiz.this, CalculatingResults.class);
+                                startActivity(i);
+                            }
+                        });
+                    }
                 }
-                //questionTextView.setText(questionBank[currentIndex]);
-                //questionTextView.startAnimation(in);
 
-                //radioGroup.clearCheck();
-                //radioGroup.startAnimation(animation);
-
-                currentIndex++;
-
-                if(currentIndex==9) {
-                    nextButton.setVisibility(View.GONE);
-                    submitButton.setVisibility(View.VISIBLE);
-                    submitButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent i= new Intent(Quiz.this, CalculatingResults.class);
-                            startActivity(i);
-                        }
-                    });
-                }
-                if(currentIndex==5 || currentIndex ==7) {
+                if(currentIndex==6 || currentIndex ==8) {
                     hintButton.setVisibility(View.VISIBLE);
                 }
                 else {
                     hintButton.setVisibility(View.GONE);
+                }
+
+                if(currentIndex==6) {
+                    radioButton4.setVisibility(View.GONE);
+                }
+                else{
+                    radioButton4.setVisibility(View.VISIBLE);
                 }
 
                 questionCountTextView.setText((currentIndex) + " of 10");
@@ -143,10 +166,10 @@ public class Quiz extends Activity{
         hintButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentIndex == 5) {
+                if (currentIndex == 6) {
                     startActivity(new Intent(Quiz.this, PopupUndertone.class));
                 }
-                if (currentIndex == 7) {
+                if (currentIndex == 8) {
                     startActivity(new Intent(Quiz.this, PopupFaceShape.class));
                 }
             }

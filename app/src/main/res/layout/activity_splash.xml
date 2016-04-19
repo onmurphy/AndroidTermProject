@@ -10,4 +10,17 @@
                android:src="@drawable/splash"
                android:layout_centerVertical="true"
                android:layout_centerHorizontal="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text = "An App to beautify you..."
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:typeface="serif"
+        android:layout_marginTop="10dp"/>
+    </LinearLayout>
 </RelativeLayout>

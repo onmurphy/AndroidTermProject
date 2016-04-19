@@ -1,0 +1,19 @@
+@startuml
+
+Class User
+
+Class Questions
+Class Answers
+Class FinalResults
+
+
+User"1" -- "+"Questions : Interacts with >
+
+
+Questions"1" o-- "1"Answers : has >
+Answers"1" *-- "1"FinalResults : has >
+
+
+
+
+@enduml

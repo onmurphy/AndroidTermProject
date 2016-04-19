@@ -1,0 +1,27 @@
+@startuml
+scale 350 width
+
+
+[*] --> SplashView : Open App
+SplashView --> StartQuizView
+StartQuizView --> QuizQuestionView : Start Quiz pressed
+
+QuizQuestionView  : /do: Save to database
+SubmitQuizView: /do: Save Answers to databse
+DisplayResultsView: /do: display information from database
+
+QuizQuestionView --> QuestionHintView: select hint
+QuestionHintView --> QuizQuestionView: continue quiz
+QuizQuestionView --> SubmitQuizView: select sumbit
+SubmitQuizView --> CalculatingResultsView: view
+
+CalculatingResultsView --> DisplayResultsView
+
+DisplayResultsView --> StartQuizView: take quiz again
+
+
+
+FromAnyPoint:
+FromAnyPoint --> [*] : Any point in the app you can close\n
+}
+@enduml

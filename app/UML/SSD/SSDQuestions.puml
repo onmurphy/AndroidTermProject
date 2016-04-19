@@ -1,0 +1,26 @@
+@startuml
+User -> System : Start Quiz
+activate User
+activate System
+group Quiz Questions
+loop until done
+User -> System : select quiz answers
+activate Database
+System --> Database: Save Information
+deactivate Database
+end
+end
+
+group Quiz Results
+User -> System: submit results
+activate Database
+Database --> System: Return Information
+deactivate Database
+System --> System: calculate results
+System --> User: display results
+
+end
+
+
+
+@enduml

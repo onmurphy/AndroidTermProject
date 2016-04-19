@@ -1,0 +1,42 @@
+@startsalt
+{
+usecase "Start Quiz" as UC1
+use case splash screen
+
+{T
++ Load Splash
+++  Goal
++++ Display the splash screen for the user.
+++ Entry conditions
++++ The user has started the application.
+++ Scenario
++++ The user has stared the application.
++++ The application pops up with the splash screen.
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ List of Subjects appears.
++++ Failure Exit Conditions
+++++ None
+}
+---
+{T
++ Start Quiz
+++  Goal
++++ To prompt the user to begin taking the quiz.
+++ Entry conditions
++++ The user starts the app.
+++ Scenario
++++ The user will open the app.
++++ The user will select to start the quiz.
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The quiz successfully begins.
++++ Failure Exit Conditions
+++++ None
+}
+}
+@endsalt

@@ -1,0 +1,62 @@
+@startsalt
+{
+
+usecase "Submit Answers" as UC5
+usecase "Submit Results" as UC6
+usecase "View Suggestions" as UC7
+
+{T
++ Submit Answers
+++  Goal
++++ Finish answer each individual question, and progress to the next one.
+++ Entry conditions
++++ The user has started the quiz.
++++ The user has selected and answer to the question.
+++ Scenario
++++ The user has stared the application.
++++ The user will answer the current question to the quiz.
++++ The user will continue to the next question.
+++ Exceptions
++++ None
+++ Exit conditions
++++ none
++++ Failure Exit Conditions
+++++ None
+}
+---
+{T
++ Submit Results
+++  Goal
++++ To finish the quiz, and sumbit results.
+++ Entry conditions
++++ The user has answered all of the questions.
+++ Scenario
++++ The user will read the question.
++++ The user will determine their answer.
++++ The user will get to the end of the quiz and select to submit the quiz.
+++ Exceptions
++++ None
+++ Exit conditions
++++ The user will complete the quiz.
++++ Failure Exit Conditions
+++++ None
+}
+---
+{T
++ View Suggestions
+++  Goal
++++ To finish the quiz, and see the suggestions provided.
+++ Entry conditions
++++ The user has answered all of the questions, and submitted the quiz.
+++ Scenario
++++ The user will get to the end of the quiz and select to submit the quiz.
++++ The application will calculate the results and display them to the user.
+++ Exceptions
++++ None
+++ Exit conditions
++++ The user will complete and submit the quiz.
++++ Failure Exit Conditions
+++++ None
+}
+}
+@endsalt

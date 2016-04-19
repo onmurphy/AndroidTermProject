@@ -1,0 +1,61 @@
+@startsalt
+{
+{T
++ View Question
+++  Goal
++++ To display the question for the user.
+++ Entry conditions
++++ The user is ready to begin taking the quiz.
+++ Scenario
++++ The user starts the quiz.
++++ The question will appear on the screen.
+++ Exceptions
++++ No Exceptions.
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The question will appear on a screen
++++ Failure Exit Conditions
+++++ None
+}
+---
+{T
++ Select Answers
+++  Goal
++++ To select answer from the questions.
+++ Entry conditions
++++ The user has answered the question.
+++ Scenario
++++ The user will read the question.
++++ The user will determine their answer.
++++ The user will tap the screen to select the answer.
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The next quiz will progress to the next question.
++++ Failure Exit Conditions
+++++ The user will be promted to select an answer if they leave it blank.
+}
+---
+{T
++ View Hint
+++  Goal
++++ To keep track of the questions the user gets right.
+++ Entry conditions
++++ The user is looking at the correct answer.
+++ Scenario
++++ The user will tap the screen to get the correct answer.
++++ The user will determine if they got the question right.
++++ The user will click the green box.
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The flashcard will turn green.
++++ Failure Exit Conditions
+++++ None
+}
+
+
+}
+@endsalt

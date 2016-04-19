@@ -35,4 +35,20 @@
         android:background="@drawable/arrow_right"
         android:layout_alignParentLeft="false"
         android:layout_alignParentRight="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/button_shape"
+        android:text="Take Quiz Again!"
+        android:textColor="#C2185B"
+        android:id="@+id/results"
+        android:textStyle="bold"
+        android:typeface="serif"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

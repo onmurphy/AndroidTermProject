@@ -12,9 +12,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.widget.Button;
+import android.view.View;
+import android.content.Intent;
 /**
  * Created by oliviamurphy on 4/15/16.
  */
+
 public class QuizResults extends Activity {
 
     ArrayList<String> answersChosen;
@@ -27,10 +31,20 @@ public class QuizResults extends Activity {
 
     ImageButton arrowRight;
 
+    Button results;
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        results = (Button) findViewById(R.id.results);
+        results.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent i= new Intent(QuizResults.this, Quiz.class);
+                    startActivity(i);
+                }
+            });
 
         Bundle myBundle = getIntent().getExtras();
         if (myBundle != null) {

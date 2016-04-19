@@ -89,6 +89,14 @@ public class Quiz extends Activity{
         hintButton = (Button) findViewById(R.id.hintButton);
         hintButton.setVisibility(View.GONE);
 
+
+        radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
+        radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
+        radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
+        radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
+
+        //setQuestionView();
+
         nextButton = (Button) findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

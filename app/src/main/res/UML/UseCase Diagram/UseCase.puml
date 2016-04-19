@@ -1,0 +1,21 @@
+@startuml
+title Use Case Diagram
+
+rectangle {
+usecase "Start Quiz" as UC1
+usecase "View Questions" as UC2
+usecase "Select Answers" as UC3
+usecase "Review Answers" as UC4
+usecase "Submit Answers" as UC5
+usecase "View Results" as UC6
+usecase "View Suggestions" as UC7
+
+(load splash) ..> UC1
+UC1 -->UC2: <<includes>>
+UC2 --> UC3: <<includes>>
+UC1 -- UC4: <<includes>>
+UC5 <-- UC3: <<includes>>
+UC4 --> UC1
+UC5 --> UC6: <<includes>>
+}
+@enduml

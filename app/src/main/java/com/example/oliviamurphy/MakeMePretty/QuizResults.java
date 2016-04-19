@@ -1,19 +1,15 @@
 package com.example.oliviamurphy.MakeMePretty;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import android.widget.Button;
-import android.view.View;
 import android.content.Intent;
 /**
  * Created by oliviamurphy on 4/15/16.
@@ -28,23 +24,17 @@ public class QuizResults extends Activity {
     Question currentQuestion;
     int questionID;
     TextView textView;
-
     ImageButton arrowRight;
+    ImageButton arrowLeft;
+    Button quizAgain;
+    int currentIndex = 0;
+    String[] titles;
+    TextView title;
 
-    Button results;
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-
-        results = (Button) findViewById(R.id.results);
-        results.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    Intent i= new Intent(QuizResults.this, Quiz.class);
-                    startActivity(i);
-                }
-            });
 
         Bundle myBundle = getIntent().getExtras();
         if (myBundle != null) {
@@ -77,19 +67,59 @@ public class QuizResults extends Activity {
             }
         }
 
-        questionID = 0;
-
         textView = (TextView) findViewById(R.id.textView4);
         arrowRight = (ImageButton) findViewById(R.id.arrowRight);
-
-        textView.setText(textReady.get(questionID));
-        questionID++;
+        arrowLeft = (ImageButton) findViewById(R.id.arrowLeft);
+        arrowLeft.setVisibility(View.GONE);
+        quizAgain = (Button) findViewById(R.id.quizAgainButton);
+        quizAgain.setVisibility(View.GONE);
+        Resources res = getResources();
+        titles = res.getStringArray(R.array.results_titles);
+        title = (TextView) findViewById(R.id.title);
+        textView.setText(textReady.get(currentIndex));
+        title.setText(titles[currentIndex]);
+        currentIndex++;
 
         arrowRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView.setText(textReady.get(questionID));
-                questionID++;
+                if (currentIndex < textReady.size()) {
+                    arrowLeft.setVisibility(View.VISIBLE);
+                    textView.setText(textReady.get(currentIndex));
+                    title.setText(titles[currentIndex]);
+                    currentIndex++;
+                }
+
+                if (currentIndex == 10) {
+                    arrowRight.setVisibility(View.GONE);
+                    quizAgain.setVisibility(View.VISIBLE);
+                }
+                else {
+                    arrowRight.setVisibility(View.VISIBLE);
+                }
+
+                quizAgain.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i= new Intent(QuizResults.this, Quiz.class);
+                        startActivity(i);
+                    }
+                });
+            }
+        });
+
+        arrowLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentIndex--;
+                textView.setText(textReady.get(currentIndex));
+                title.setText(titles[currentIndex]);
+
+                arrowRight.setVisibility(View.VISIBLE);
+
+                if(currentIndex == 0) {
+                    arrowLeft.setVisibility(View.GONE);
+                }
             }
         });
     }

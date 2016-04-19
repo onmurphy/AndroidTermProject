@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 /**
  * Created by oliviamurphy on 4/15/16.
@@ -29,5 +30,9 @@ public class PopupFaceShape extends Activity {
         else {
             getWindow().setLayout((int) (width * .50), (int) (height * .60));
         }
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.dimAmount = 0.5f;
+        getWindow().setAttributes(lp);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
 }

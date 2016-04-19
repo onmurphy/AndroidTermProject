@@ -133,6 +133,27 @@ public class Quiz extends Activity{
                     submitButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            if (radioGroup.getCheckedRadioButtonId() == -1) {
+                                Toast.makeText(getApplicationContext(), "Wait, you didn't choose an answer!", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                if (radioButton1.isChecked()) {
+                                    answersChosen.add(questionID, "optA");
+                                }
+
+                                if (radioButton2.isChecked()) {
+                                    answersChosen.add(questionID, "optB");
+                                }
+
+                                if (radioButton3.isChecked()) {
+                                    answersChosen.add(questionID, "optC");
+                                }
+
+                                if (radioButton4.isChecked()) {
+                                    answersChosen.add(questionID, "optD");
+                                }
+                            }
+
                             Intent intent = new Intent(Quiz.this, CalculatingResults.class);
                             Bundle b = new Bundle();
                             b.putStringArrayList("answersChosen", answersChosen);

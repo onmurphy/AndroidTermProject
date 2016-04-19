@@ -22,7 +22,7 @@ public class QuizResults extends Activity {
     DBHelper db;
     List<Question> questionList;
     Question currentQuestion;
-    int questionID = 0;
+    int questionID;
     TextView textView;
 
     ImageButton arrowRight;
@@ -43,6 +43,7 @@ public class QuizResults extends Activity {
         db.addQuestions();
         questionList = db.getAllQuestions();
 
+        questionID = 0;
         currentQuestion = questionList.get(questionID);
 
         for (String answers : answersChosen) {
@@ -55,8 +56,14 @@ public class QuizResults extends Activity {
             } else if (answers.equals("optD")) {
                 textReady.add(currentQuestion.getANSWERD());
             }
-            currentQuestion = questionList.get(++questionID);
+            questionID++;
+
+            if (questionID < answersChosen.size()) {
+                currentQuestion = questionList.get(questionID);
+            }
         }
+
+        questionID = 0;
 
         textView = (TextView) findViewById(R.id.textView4);
         arrowRight = (ImageButton) findViewById(R.id.arrowRight);

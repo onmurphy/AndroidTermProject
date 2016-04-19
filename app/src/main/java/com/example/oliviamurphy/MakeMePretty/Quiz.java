@@ -35,7 +35,7 @@ public class Quiz extends Activity{
     int questionID = 0;
     Question currentQuestion;
     DBHelper db;
-    ArrayList<String> answerChosen = new ArrayList<>();
+    ArrayList<String> answersChosen = new ArrayList<>();
 
     private void setQuestionView()
     {
@@ -98,61 +98,59 @@ public class Quiz extends Activity{
                 }
                 else {
                     if (radioButton1.isChecked()) {
-                        answerChosen.add(questionID, "optA");
+                        answersChosen.add(questionID, "optA");
                     }
 
                     if (radioButton2.isChecked()) {
-                        answerChosen.add(questionID, "optB");
+                        answersChosen.add(questionID, "optB");
                     }
 
                     if (radioButton3.isChecked()) {
-                        answerChosen.add(questionID, "optC");
+                        answersChosen.add(questionID, "optC");
                     }
 
                     if (radioButton4.isChecked()) {
-                        answerChosen.add(questionID, "optD");
+                        answersChosen.add(questionID, "optD");
                     }
                     if (questionID < 9) {
                         questionID++;
                         currentQuestion = questionList.get(questionID);
                         setQuestionView();
                         questionTextView.startAnimation(in);
-                    } else {
-                        Intent intent = new Intent(Quiz.this, QuizResults.class);
-                        Bundle b = new Bundle();
-                        b.putStringArrayList("answersChosen", answerChosen);
-                        intent.putExtras(b);
-                        startActivity(intent);
-                        finish();
                     }
-                    questionTextView.startAnimation(in);
 
+                    questionTextView.startAnimation(in);
                     radioGroup.clearCheck();
                     radioGroup.startAnimation(animation);
 
                     currentIndex++;
 
-                    if (currentIndex == 10) {
+                    if (questionID == 9) {
                         nextButton.setVisibility(View.GONE);
                         submitButton.setVisibility(View.VISIBLE);
-                        submitButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i = new Intent(Quiz.this, CalculatingResults.class);
-                                startActivity(i);
-                            }
-                        });
                     }
+
+                    submitButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Quiz.this, CalculatingResults.class);
+                            Bundle b = new Bundle();
+                            b.putStringArrayList("answersChosen", answersChosen);
+                            intent.putExtras(b);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
                 }
 
-                if(currentIndex==6 || currentIndex ==8) {
+                if(questionID==5 || questionID==7) {
                     hintButton.setVisibility(View.VISIBLE);
                 }
                 else {
                     hintButton.setVisibility(View.GONE);
                 }
 
-                if(currentIndex==6) {
+                if(questionID==5) {
                     radioButton4.setVisibility(View.GONE);
                 }
                 else{
@@ -166,10 +164,10 @@ public class Quiz extends Activity{
         hintButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentIndex == 6) {
+                if (questionID == 5) {
                     startActivity(new Intent(Quiz.this, PopupUndertone.class));
                 }
-                if (currentIndex == 8) {
+                if (questionID == 7) {
                     startActivity(new Intent(Quiz.this, PopupFaceShape.class));
                 }
             }

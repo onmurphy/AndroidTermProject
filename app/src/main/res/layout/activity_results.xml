@@ -6,6 +6,7 @@
                 android:background="#E91E63"
                 android:padding="20dp">
 
+
     <TextView
         android:layout_width="350dp"
         android:layout_height="400dp"
@@ -14,8 +15,11 @@
         android:layout_centerHorizontal="true"
         android:background="#F8BBD0"
         android:padding="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:typeface="serif"
         android:textStyle="bold|italic"
+        android:textSize="15dp"
         android:gravity="center_vertical|center_horizontal"/>
 
     <ImageButton
@@ -61,6 +65,15 @@
         android:layout_centerHorizontal="true"
         android:typeface="serif"
         android:textStyle="bold|italic"
+        android:textSize="20dp"
         android:gravity="center_vertical|center_horizontal"/>
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageButton3"
+        android:background="@drawable/lips_and_lipstick"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

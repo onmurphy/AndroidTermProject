@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E91E63"
+                android:padding="20dp">
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:id="@+id/textView4"
+        android:background="#F8BBD0"
+        android:padding="10dp"
+        android:typeface="serif"
+        android:textStyle="bold|italic"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageButton"
+        android:layout_centerVertical="true"
+        android:background="@drawable/arrow_left"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_alignParentLeft="true"/>
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageButton2"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/textView4"
+        android:background="@drawable/arrow_right"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/button_shape"
+        android:text="Take Quiz Again!"
+        android:textColor="#C2185B"
+        android:id="@+id/results"
+        android:textStyle="bold"
+        android:typeface="serif"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/imageButton"/>
+
+</RelativeLayout>

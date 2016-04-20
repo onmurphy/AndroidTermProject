@@ -1,0 +1,8 @@
+@startuml
+(*)  --> "start quiz"
+If "begin" then
+--> [Yes] "display questions"
+else
+--> (*)
+
+@enduml

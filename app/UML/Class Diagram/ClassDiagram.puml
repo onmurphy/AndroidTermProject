@@ -1,0 +1,81 @@
+@startuml
+
+class SplashActivity {
+    onCreate()
+}
+class CalculatingResults {
+    answersChosen: ArrayList<Results>
+    textView : TextView
+    onCreateView()
+
+}
+class DBHelpter {
+    questionList: ArrayList<Question>
+    db : SQLiteDatabase
+    onCreateView()
+    DBHelper()
+    addQuestions()
+    getAllQuestions()
+}
+class PopupFaceShape {
+    onCreate()
+}
+class PopupUndertone {
+    onCreate()
+}
+class Question {
+    question()
+    getID()
+    getQuestion()
+    getAnswer()
+    setID()
+    setQuestion()
+    setAnswer()
+
+}
+class Quiz {
+    nextButton: Button
+    submitButton: Button
+    hintButton: Button
+    questionTextView: TextView
+    questionCountTextView: TextView
+    radioGroup: RadioGroup
+    radioButton1: RadioButton
+    radioButton2: RadioButton
+    radioButton3: RadioButton
+    radioButton4: RadioButton
+    questionList: List<Question>
+    questionID: int
+     questionList: Question
+     db: DBHelper
+     answerChosen: ArrayList<String>
+     setQuestionView()
+     onCreate()
+}
+class QuizResults {
+    answersChosen: ArrayList<String>
+    textReady: ArrayList<String>
+    db: DBHelper
+    questionList:List<Question>
+    currentQuestion:Question
+    questionID: int
+    textView: TextView
+    arrowRight:ImageButton
+    arrowLeft:ImageButton
+     quizAgain: Button
+    currentIndex: int
+     title: TextView
+     onCreate()
+}
+
+SplashActivity "1" -- "1" Quiz : loads
+Quiz "1" o--- "*" Question : contains
+Question "1" o-- "1" PopupFaceShape: displays
+Question "1" o-- "1" PopupUndertone: displays
+DBHelpter "1" - "1" Quiz: contains
+Question "1" - "1" CalculatingResults
+CalculatingResults "1" - "*" QuizResults
+Quiz "1" o-- "*" QuizResults: includes
+QuizResults "1" o-- "*" DBHelpter: includes
+
+@enduml

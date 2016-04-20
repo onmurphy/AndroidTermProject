@@ -1,0 +1,10 @@
+@startuml
+(*)  --> "submit results"
+--> calculate results
+--> display results
+
+If "retake quiz" then
+--> [Yes] "take quiz again"
+else
+-->(*)
+@enduml

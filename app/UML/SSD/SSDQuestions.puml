@@ -3,7 +3,7 @@ User -> System : Start Quiz
 activate User
 activate System
 group Quiz Questions
-loop until done
+loop through questions
 User -> System : select quiz answers
 activate Database
 System --> Database: Save Information
@@ -17,8 +17,14 @@ activate Database
 Database --> System: Return Information
 deactivate Database
 System --> System: calculate results
+loop through results
+User -> System: select next result
 System --> User: display results
-
+opt take quiz again
+User -> System: start quiz
+deactivate System
+end
+end
 end
 
 

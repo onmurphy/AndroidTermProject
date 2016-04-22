@@ -1,0 +1,16 @@
+Make Me Pretty was intended to be a mobile application that makes beauty suggestions. The user fills out a simple questionnaire about themselves, and our application provides makeup, hair, and fashion tips based on that input. 
+
+Main Features:
+splash screen
+the quiz
+popup windows that provide helpful hints for potentially confusing questions
+a database to hold all questions and options for the quiz, as well as our suggestions
+custom animations
+Personalized suggestions based on user input
+secret easter egg video!
+
+*All features have been implemented except the video
+
+*No known bugs
+
+*No special instructions; simply save the project directory to your machine, open in Android Studio, build and run on your device/emulator. 

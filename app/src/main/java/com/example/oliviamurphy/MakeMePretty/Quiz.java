@@ -23,7 +23,7 @@ public class Quiz extends Activity{
     Button nextButton;
     Button submitButton;
     Button hintButton;
-    int currentIndex = 0;
+    int currentIndex = 1;
     TextView questionTextView;
     TextView questionCountTextView;
     RadioGroup radioGroup;
@@ -36,6 +36,9 @@ public class Quiz extends Activity{
     Question currentQuestion;
     DBHelper db;
     ArrayList<String> answersChosen = new ArrayList<>();
+    public final String QUIZ_INDEX = "quizIndex";
+    public final String QUESTION_ID = "questionID";
+    public final String ANSWER_LIST = "answerList";
 
     private void setQuestionView()
     {
@@ -45,7 +48,18 @@ public class Quiz extends Activity{
         radioButton3.setText(currentQuestion.getOPTC());
         radioButton4.setText(currentQuestion.getOPTD());
     }
-
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putStringArrayList(ANSWER_LIST, answersChosen);
+        savedInstanceState.putInt(QUIZ_INDEX, currentIndex);
+        savedInstanceState.putInt(QUESTION_ID, questionID);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        answersChosen = savedInstanceState.getStringArrayList(ANSWER_LIST);
+    }
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +68,12 @@ public class Quiz extends Activity{
         db = new DBHelper(this);
         db.addQuestions();
         questionList = db.getAllQuestions();
+        if(savedInstanceState != null)
+        {
+            questionID = savedInstanceState.getInt(QUESTION_ID);
+            currentIndex = savedInstanceState.getInt(QUIZ_INDEX);
 
+        }
         currentQuestion = questionList.get(questionID);
 
         final Animation in = new AlphaAnimation(0.0f, 1.0f);
@@ -78,7 +97,7 @@ public class Quiz extends Activity{
 
         questionTextView.startAnimation(in);
 
-        currentIndex++;
+        //currentIndex++;
 
         questionCountTextView = (TextView) findViewById(R.id.questionCountTextView);
         questionCountTextView.setText((currentIndex) + " of 10");

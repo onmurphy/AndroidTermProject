@@ -4,12 +4,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#E91E63"
-                android:padding="20dp">
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp">
 
 
     <TextView
-        android:layout_width="350dp"
-        android:layout_height="400dp"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
         android:id="@+id/textView4"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -73,7 +74,7 @@
         android:layout_height="30dp"
         android:id="@+id/imageButton3"
         android:background="@drawable/lips_and_lipstick"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/arrowRight"/>
 
 </RelativeLayout>

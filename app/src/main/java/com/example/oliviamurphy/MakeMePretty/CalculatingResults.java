@@ -40,9 +40,6 @@ public class CalculatingResults extends Activity{
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                Intent mainIntent = new Intent(CalculatingResults.this,QuizResults.class);
-                CalculatingResults.this.startActivity(mainIntent);
-                CalculatingResults.this.finish();
                 Intent intent = new Intent(CalculatingResults.this, QuizResults.class);
                 Bundle b = new Bundle();
                 b.putStringArrayList("answersChosen", answersChosen);

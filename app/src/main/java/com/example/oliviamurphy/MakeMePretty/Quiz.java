@@ -59,6 +59,14 @@ public class Quiz extends Activity{
     public void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         answersChosen = savedInstanceState.getStringArrayList(ANSWER_LIST);
+        questionID = savedInstanceState.getInt(QUESTION_ID);
+        if(questionID == 5) {
+            radioButton4.setVisibility(View.GONE);
+            hintButton.setVisibility(View.VISIBLE);
+        }
+        else if (questionID == 7){
+            hintButton.setVisibility(View.VISIBLE);
+        }
     }
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -72,6 +80,9 @@ public class Quiz extends Activity{
         {
             questionID = savedInstanceState.getInt(QUESTION_ID);
             currentIndex = savedInstanceState.getInt(QUIZ_INDEX);
+            if(questionID == 6) {
+                radioButton4.setVisibility(View.GONE);
+            }
 
         }
         currentQuestion = questionList.get(questionID);
@@ -199,6 +210,9 @@ public class Quiz extends Activity{
                 }
 
                 if(questionID==5) {
+                    radioButton4.setVisibility(View.GONE);
+                }
+                else if(savedInstanceState != null && questionID ==5) {
                     radioButton4.setVisibility(View.GONE);
                 }
                 else{

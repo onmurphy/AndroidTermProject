@@ -7,17 +7,25 @@
                 android:paddingBottom="15dp"
                 android:paddingTop="20dp">
 
+    <ImageView
+        android:layout_width="480dp"
+        android:layout_height="235dp"
+        android:id="@+id/imageView3"
+        android:background="@drawable/notecards"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/title" />
+
     <TextView
-        android:layout_width="350dp"
-        android:layout_height="210dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:id="@+id/textView4"
-        android:background="#F8BBD0"
         android:typeface="serif"
         android:textStyle="bold|italic"
         android:paddingTop="10dp"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="#000000" />
 
     <ImageButton
         android:layout_width="30dp"

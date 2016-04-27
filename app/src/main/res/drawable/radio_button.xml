@@ -2,7 +2,7 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_checked="true" android:drawable="@drawable/star_down" />
-    <item android:state_checked="false" android:drawable="@drawable/star" />
+    <item android:state_checked="true" android:drawable="@drawable/lipstick_color_30x40" />
+    <item android:state_checked="false" android:drawable="@drawable/lipstick_greyscale_30x40" />
 
 </selector>

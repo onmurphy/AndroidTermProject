@@ -31,7 +31,15 @@ public class QuizResults extends Activity {
     int currentIndex = 0;
     String[] titles;
     TextView title;
+    public final String QUESTION_ID_QUIZRESULT = "Question_ID";
+    public final String CURRENT_INDEX = "Current_Index";
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putInt(CURRENT_INDEX,currentIndex);
 
+        super.onSaveInstanceState(savedInstanceState);
+
+    }
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +57,11 @@ public class QuizResults extends Activity {
         questionList = db.getAllQuestions();
 
         questionID = 0;
+        if(savedInstanceState != null)
+        {
+            currentIndex = savedInstanceState.getInt(CURRENT_INDEX);
+        }
+
         currentQuestion = questionList.get(questionID);
 
         for (String answers : answersChosen) {
@@ -63,6 +76,7 @@ public class QuizResults extends Activity {
             }
             questionID++;
 
+
             if (questionID < answersChosen.size()) {
                 currentQuestion = questionList.get(questionID);
             }
@@ -71,7 +85,9 @@ public class QuizResults extends Activity {
         textView = (TextView) findViewById(R.id.textView4);
         arrowRight = (ImageButton) findViewById(R.id.arrowRight);
         arrowLeft = (ImageButton) findViewById(R.id.arrowLeft);
-        arrowLeft.setVisibility(View.GONE);
+        if(currentIndex < 1) {
+            arrowLeft.setVisibility(View.GONE);
+        }
         quizAgain = (Button) findViewById(R.id.quizAgainButton);
         quizAgain.setVisibility(View.GONE);
         Resources res = getResources();
@@ -79,30 +95,42 @@ public class QuizResults extends Activity {
         title = (TextView) findViewById(R.id.title);
         textView.setText(textReady.get(currentIndex));
         title.setText(titles[currentIndex]);
-        currentIndex++;
-
+        if(savedInstanceState == null)
+        {
+            currentIndex++;
+        }
         arrowRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (currentIndex < textReady.size()) {
                     arrowLeft.setVisibility(View.VISIBLE);
+                    if(currentIndex < 0)
+                    {
+                        currentIndex = 0;
+                        arrowLeft.setVisibility(View.GONE);
+                    }
+                    if(currentIndex == 0)
+                    {
+                        currentIndex = 1;
+                    }
+
                     textView.setText(textReady.get(currentIndex));
                     title.setText(titles[currentIndex]);
                     currentIndex++;
+
                 }
 
                 if (currentIndex == 10) {
                     arrowRight.setVisibility(View.GONE);
                     quizAgain.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     arrowRight.setVisibility(View.VISIBLE);
                 }
 
                 quizAgain.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i= new Intent(QuizResults.this, Quiz.class);
+                        Intent i = new Intent(QuizResults.this, Quiz.class);
                         startActivity(i);
                     }
                 });
@@ -112,13 +140,17 @@ public class QuizResults extends Activity {
         arrowLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (currentIndex == 10) {
+                    currentIndex--;
+                }
+
                 currentIndex--;
                 textView.setText(textReady.get(currentIndex));
                 title.setText(titles[currentIndex]);
 
                 arrowRight.setVisibility(View.VISIBLE);
 
-                if(currentIndex == 0) {
+                if (currentIndex == 0) {
                     arrowLeft.setVisibility(View.GONE);
                 }
             }
